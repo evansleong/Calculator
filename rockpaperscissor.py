@@ -13,7 +13,6 @@ def generate_ai_choice():
 
 
 def determine_winner(user_choice, ai_choice):
-    user_score = 0
     if ai_choice == 'r':
         print("AI CHOSE ROCK")
     elif ai_choice == 'p':
@@ -26,19 +25,20 @@ def determine_winner(user_choice, ai_choice):
           or (user_choice == "p" and ai_choice == "r")
           or (user_choice == "s" and ai_choice == "p")):
         print("YOU WON")
-        user_score += 1
+        return True
     else:
         print("AI WON")
 
-    print("Your score :", user_score)
-
 
 def start_game():
+    user_score = 0
     replay = 'Y'
     while replay == 'Y' or replay == 'y':
         user_choice = get_user_choice()
         ai_choice = generate_ai_choice()
-        determine_winner(user_choice, ai_choice)
+        if determine_winner(user_choice, ai_choice):
+            user_score += 1
+        print("Your score :", user_score)
         replay = input("Do you want to replay the game ?: ")
 
 
